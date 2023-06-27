@@ -27,7 +27,7 @@ class MoneyTransferTest {
         var numberSecondCard = getSecondCardInfo();
         var balanceFirstCard = dashboardPage.getCardBalance(numberFirstCard);
         var balanceSecondCard = dashboardPage.getCardBalance(numberSecondCard);
-        var sum = getSumTransferInfo(balanceFirstCard);
+        var sum = getSumTransferInfo(balanceSecondCard);
         var expectedBalanceFirstCard = balanceFirstCard + sum;
         var expectedBalanceSecondCard = balanceSecondCard - sum;
         var cardTransferPage = dashboardPage.transfer(numberFirstCard);
@@ -47,8 +47,8 @@ class MoneyTransferTest {
         var sum = getSumTransferInfo(balanceFirstCard);
         var expectedBalanceSecondCard = balanceSecondCard + sum;
         var expectedBalanceFirstCard = balanceFirstCard - sum;
-        var cardTransferPage = dashboardPage.transfer(numberFirstCard);
-        cardTransferPage.transferCashValid(numberSecondCard, sum);
+        var cardTransferPage = dashboardPage.transfer(numberSecondCard);
+        cardTransferPage.transferCashValid(numberFirstCard, sum);
         var actualBalanceSecondCard = dashboardPage.getCardBalance(numberSecondCard);
         var actualBalanceFirstCard = dashboardPage.getCardBalance(numberFirstCard);
         assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
